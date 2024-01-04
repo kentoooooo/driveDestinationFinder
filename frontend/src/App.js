@@ -64,8 +64,9 @@ function App() {
   const onTapSearchButton = (departure, durationMin, durationMax, fee) => {
     const fetchData = async () => {
       try {
+        const baseUrl = process.env.REACT_APP_API_BASE_URL;
         const response = await fetch(
-          `/api/sightseeing_spot/filter?departure_spot_id=0&durationMin=${durationMin}&durationMax=${durationMax}&price=${fee}`,
+          `${baseUrl}/api/sightseeing_spot/filter?departure_spot_id=0&durationMin=${durationMin}&durationMax=${durationMax}&price=${fee}`,
           {
             method: "GET",
             headers: {
@@ -116,12 +117,16 @@ function App() {
     setTimeout(() => setSelectedSightseeingSpot(sightseeingSpot), 500);
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/around_spot/${sightseeingSpot.id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const baseUrl = process.env.REACT_APP_API_BASE_URL;
+        const response = await fetch(
+          `${baseUrl}/api/around_spot/${sightseeingSpot.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         const json = await response.json();
         setAroundSightseeingSpotList(json);
@@ -137,12 +142,16 @@ function App() {
     setIsDetailMounted(false);
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/around_spot/${sightseeingSpot.id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const baseUrl = process.env.REACT_APP_API_BASE_URL;
+        const response = await fetch(
+          `${baseUrl}/api/around_spot/${sightseeingSpot.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         const json = await response.json();
         setAroundSightseeingSpotList(json);
