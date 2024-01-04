@@ -8,7 +8,8 @@ const { Error400Body } = require('./extension/error_response');
 
 //他のポートからのアクセスを許可する
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:3000";
+  res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, PATCH, DELETE, OPTION"
